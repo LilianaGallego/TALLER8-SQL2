@@ -55,7 +55,7 @@ public class ContactDomain {
     /**
      * Fecha de nacimiento del contacto
      */
-    @Column(name = "con_birthday", nullable = false)
+    @Column(name = "con_birthday", nullable = false,length = 45)
     private String birthday;
 
     /**

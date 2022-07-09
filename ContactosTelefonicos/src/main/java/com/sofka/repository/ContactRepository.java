@@ -19,7 +19,7 @@ import java.util.List;
 public interface ContactRepository extends JpaRepository<ContactDomain, Integer> {
 
     /**
-     * Busca los contactos que empizan por X dato tanto por nombre como por apellido
+     * Busca los contactos que empiezan por el nombre completo
      *
      * @param data Dato a buscar
      * @return Listado de contactos encontrados
@@ -34,7 +34,7 @@ public interface ContactRepository extends JpaRepository<ContactDomain, Integer>
     public List<ContactDomain> findByFullNameStartingWith(@Param("data") String data);
 
     /**
-     * Busca los contactos que contienen X dato tanto por nombre como por apellido
+     * Busca los contactos que contienen el nombre completo
      *
      * @param data Dato a buscar
      * @return Listado de contactos encontrados
@@ -100,5 +100,5 @@ public interface ContactRepository extends JpaRepository<ContactDomain, Integer>
      */
     @Modifying
     @Query(value = "update ContactDomain con set con.birthday = :birthday where con.id = :id")
-    public void updateBirthday(@Param(value = "id") Integer id, @Param(value = "birthday") Date birthday);
+    public void updateBirthday(@Param(value = "id") Integer id, @Param(value = "birthday") String birthday);
 }
