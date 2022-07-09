@@ -8,13 +8,13 @@ import java.util.List;
 
 
 /**
- * Interface para el servicio de con
+ * Interface para el servicio Directorio
  *
  * @version 1.0.0 2022-07-08
  * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
  * @since 1.0.0
  */
-public interface IContactService {
+public interface IDirectoryService {
 
 
     /**

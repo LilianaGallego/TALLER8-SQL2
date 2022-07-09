@@ -4,9 +4,10 @@ import com.sofka.domain.ContactDomain;
 import com.sofka.domain.PhoneDomain;
 import com.sofka.repository.ContactRepository;
 import com.sofka.repository.PhoneRepository;
-import com.sofka.service.interfaces.IContactService;
+import com.sofka.service.interfaces.IDirectoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
@@ -19,7 +20,8 @@ import java.util.List;
  * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
  * @since 1.0.0
  */
-public class ContactsService implements IContactService {
+@Service
+public class DirectoryService implements IDirectoryService {
 
     /**
      * Repositorio del Contacto
@@ -65,7 +67,7 @@ public class ContactsService implements IContactService {
     }
 
     /**
-     * Busca un dato entre el nombre o los apellidos en un contacto
+     * Busca el nombre compelto en un contacto
      *
      * @param dataToSearch Dato a buscar
      * @return Lita de contactos
@@ -75,7 +77,7 @@ public class ContactsService implements IContactService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ContactDomain> searchContacto(String dataToSearch) {
+    public List<ContactDomain> searchContact(String dataToSearch) {
         var contacto1 = contactRepository.findByFullNameStartingWith(dataToSearch);
         var contacto2 = contactRepository.findByFullNameContains(dataToSearch);
         var contacto3 = contactRepository.findByFullNameEndingWith(dataToSearch);
@@ -217,7 +219,7 @@ public class ContactsService implements IContactService {
      */
     @Override
     @Transactional
-    public PhoneDomain updateOnlyNumber(Integer id, PhoneDomain phone) {
+    public PhoneDomain updateOnlyNumberPhone(Integer id, PhoneDomain phone) {
         phone.setId(id);
         phoneRepository.updateNumberPhone(id, phone.getNumber());
         return phone;
