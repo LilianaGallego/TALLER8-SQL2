@@ -16,7 +16,6 @@ import java.util.List;
  */
 public interface IDirectoryService {
 
-
     /**
      * Devuelve una lista de Contactos con todos los contactos guardados
      *
@@ -27,6 +26,15 @@ public interface IDirectoryService {
      */
     public List<ContactDomain> getList();
 
+    /**
+     * Devuelve una lista de telefonos con todos los telefonos guardados
+     *
+     * @return
+     *
+     * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+     * @since 1.0.0
+     */
+    public List<PhoneDomain> getListPhones();
     /**
      * Devuelve una lista de Contactos con todos contactos del sistema ordenados por el campo indicado
      * (fullName) ya sea ascendente o descendente
@@ -72,6 +80,7 @@ public interface IDirectoryService {
      * @since 1.0.0
      */
     public PhoneDomain createPhone(PhoneDomain phone);
+
 
     /**
      * Actualiza una tupla completa de un contacto

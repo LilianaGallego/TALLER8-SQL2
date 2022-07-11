@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(242, 250, 215);
+}
+
+
+span{
+    margin: 15px;
+    font-family: "Lobster", cursive;
+    color: #256d23;
+    text-align: center;
+}
+
+#inputs{
+    margin: 50px;
+}
+
+#editContact{
+    display: none;
+}

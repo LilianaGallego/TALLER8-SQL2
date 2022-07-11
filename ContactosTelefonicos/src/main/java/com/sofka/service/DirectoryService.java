@@ -118,6 +118,20 @@ public class DirectoryService implements IDirectoryService {
         return phoneRepository.save(phone);
     }
 
+
+    /**
+     * Devuelve una lista de telefonos con todos los telefonos guardados
+     *
+     * @return
+     *
+     * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+     * @since 1.0.0
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<PhoneDomain> getListPhones() {
+        return phoneRepository.findAll();
+    }
     /**
      * Actualiza una tupla completa de un contacto
      *
