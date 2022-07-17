@@ -5,6 +5,7 @@ import com.sofka.domain.PhoneDomain;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
+import java.util.Optional;
 
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
  * @since 1.0.0
  */
 public interface IDirectoryService {
+
 
     /**
      * Devuelve una lista de Contactos con todos los contactos guardados
@@ -49,7 +51,7 @@ public interface IDirectoryService {
     public List<ContactDomain> getList(String field, Sort.Direction order);
 
     /**
-     * Busca un dato dado entre el nombre y/o los apellidos en un contacto
+     * Busca un dato dado en un contacto
      *
      * @param dataToSearch Dato a buscar
      * @return Lita de contactos

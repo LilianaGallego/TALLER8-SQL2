@@ -25,7 +25,7 @@ import java.sql.SQLException;
  */
 @Slf4j
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200/")
 public class DirectoryController {
 
     /**
@@ -114,6 +114,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping(path="/api/v1/contacts")
     public ResponseEntity<Response> getListContacts(){
         response.restart();
@@ -135,6 +136,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping(path = "/api/v1/index/orderby/{orderBy}/{order}")
     public ResponseEntity<Response> indexOrderBy(
             @PathVariable(value="orderBy") String orderBy,
@@ -159,8 +161,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
-
-
+    @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping(path = "/api/v1/search/contact/{dataToSearch}")
     public ResponseEntity<Response> searchContactByFullName(
             @PathVariable(value="dataToSearch") String dataToSearch
@@ -178,13 +179,14 @@ public class DirectoryController {
     /**
      * Crea un nuevo contacto en el sistema
      *
-     * @param contact Objeto Contacto acrear
+     * @param contact Objeto Contacto a crear
      * @return Objeto Response en formato JSON
      *
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
-    @PostMapping(path = "/api/v1/contacts")
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @PostMapping(path = "/api/v1/contact")
     public ResponseEntity<Response> createContact(@RequestBody ContactDomain contact) {
         response.restart();
         try {
@@ -208,6 +210,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PostMapping(path = "/api/v1/phone")
     public ResponseEntity<Response> createPhone(@RequestBody PhoneDomain phone) {
         response.restart();
@@ -231,6 +234,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @GetMapping(path="/api/v1/phones")
     public ResponseEntity<Response> getListPhones(){
         response.restart();
@@ -253,7 +257,8 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
-    @PutMapping(path = "/api/v1/contacts")
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @PutMapping(path = "/api/v1/contacts/{id}")
     public ResponseEntity<Response> updateContact(
             @RequestBody ContactDomain contact,
             @PathVariable(value="id") Integer id
@@ -280,6 +285,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PutMapping(path = "/api/v1/phone/{id}")
     public ResponseEntity<Response> updatePhone(
             @RequestBody PhoneDomain phone,
@@ -307,6 +313,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PatchMapping(path = "/api/v1/contact/{id}/fullName")
     public ResponseEntity<Response> updateFullName(
             @RequestBody ContactDomain contact,
@@ -334,6 +341,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PatchMapping(path = "/api/v1/contact/{id}/email")
     public ResponseEntity<Response> updateEmail(
             @RequestBody ContactDomain contact,
@@ -362,7 +370,8 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
-    @PatchMapping(path = "/api/v1/contact/{id}/lastname")
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @PatchMapping(path = "/api/v1/contact/{id}/birthday")
     public ResponseEntity<Response> updateBirthday(
             @RequestBody ContactDomain contact,
             @PathVariable(value="id") Integer id
@@ -389,6 +398,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @PatchMapping(path = "/api/v1/phone/{id}/number")
     public ResponseEntity<Response> updateOnlyNumberPhone(
             @RequestBody PhoneDomain phone,
@@ -415,6 +425,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @DeleteMapping(path = "/api/v1/contact/{id}")
     public ResponseEntity<Response> deleteContact(@PathVariable(value="id") Integer id) {
         response.restart();
@@ -444,6 +455,7 @@ public class DirectoryController {
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
+    @CrossOrigin(origins = "http://localhost:8080/")
     @DeleteMapping(path = "/api/v1/phone/{id}")
     public ResponseEntity<Response> deletePhone(@PathVariable(value="id") Integer id) {
         response.restart();
