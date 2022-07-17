@@ -105,6 +105,19 @@ public class DirectoryService implements IDirectoryService {
     }
 
     /**
+     * Devuelve una lista de telefonos del contacto
+     *
+     * @return
+     *
+     * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+     * @since 1.0.0
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<PhoneDomain> listPhonesByContact(Integer id){
+        return phoneRepository.findAllByContact(id);
+    }
+    /**
      * Crea un teléfono en el sistema a nombre de un contacto
      *
      * @param phone Objeto del teléfono a crear
@@ -123,7 +136,7 @@ public class DirectoryService implements IDirectoryService {
     /**
      * Devuelve una lista de telefonos con todos los telefonos guardados
      *
-     * @return
+     * @return lista de telefonos
      *
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0

@@ -34,12 +34,12 @@ public interface PhoneRepository extends JpaRepository<PhoneDomain, Integer> {
     /**
      * Selecciona los teléfonos de un contacto en específico
      *
-     * @param contact Objeto del contacto
+     * @param id id del contacto
      * @return Listado de teléfonos encontrados
      *
      * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
      * @since 1.0.0
      */
-    @Query(value = "SELECT pho FROM PhoneDomain pho WHERE pho.contact = :contact")
-    public List<PhoneDomain> findAllByContact(@Param(value = "contact") ContactDomain contact);
+    @Query(value = "SELECT pho.number FROM PhoneDomain pho WHERE pho.contact.id = :id")
+    public List<PhoneDomain> findAllByContact(@Param(value = "id") Integer id);
 }

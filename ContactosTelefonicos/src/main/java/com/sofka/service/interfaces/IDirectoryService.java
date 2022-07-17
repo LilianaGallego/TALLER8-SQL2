@@ -83,6 +83,17 @@ public interface IDirectoryService {
      */
     public PhoneDomain createPhone(PhoneDomain phone);
 
+    /**
+     * Crea una lista de los telefonos del contacto
+     *
+     * @param contact Objeto del contacto a buscar
+     * @return lista de telefonos del contacto
+     *
+     * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+     * @since 1.0.0
+     */
+    public List<PhoneDomain> listPhonesByContact(Integer id);
+
 
     /**
      * Actualiza una tupla completa de un contacto

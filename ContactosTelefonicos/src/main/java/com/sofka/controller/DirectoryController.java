@@ -248,6 +248,29 @@ public class DirectoryController {
     }
 
     /**
+     * Devuelve la lista de telefonos de un contacto
+     *
+     * @return Objeto lista de telefonos Response en formato JSON
+     *
+     * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+     * @since 1.0.0
+     */
+    @CrossOrigin(origins = "http://localhost:8080/")
+    @GetMapping(path="/api/v1/phones/{id}")
+    public ResponseEntity<Response> getListPhonesByContact(
+            @PathVariable(value="id") Integer id
+    ){
+        response.restart();
+        try {
+            response.data = directoryService.listPhonesByContact(id);
+            httpStatus = HttpStatus.OK;
+        } catch (Exception exception) {
+            getErrorMessageInternal(exception);
+        }
+        return new ResponseEntity(response, httpStatus);
+    }
+
+    /**
      * Actualiza todos los campos de un contacto
      *
      * @param contact Objeto contacto a actualizar
@@ -399,7 +422,7 @@ public class DirectoryController {
      * @since 1.0.0
      */
     @CrossOrigin(origins = "http://localhost:8080/")
-    @PatchMapping(path = "/api/v1/phone/{id}/number")
+    @PatchMapping(path = "/api/v1/phone/{id}/phone")
     public ResponseEntity<Response> updateOnlyNumberPhone(
             @RequestBody PhoneDomain phone,
             @PathVariable(value="id") Integer id

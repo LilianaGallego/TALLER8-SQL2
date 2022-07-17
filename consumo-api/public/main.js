@@ -49,21 +49,25 @@ window.addEventListener("DOMContentLoaded", () => {
  * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
  * @since 1.0.0
  */
-const showContacts = async (contacts) => {
+const showContacts = (contacts) => {
   let body = "";
 
   contacts.forEach((contact) => {
-    /* let listPhones =[];   
+    
+    let id = contact.id
+    console.log(id)
+    
+    let listPhones = contact.phones 
     let phone = '';
     for (let i = 0; i < listPhones.length; i++) {
       phone += listPhones[i].number + '-';
       
-    } */
+    }
     body += `<tr >
           <td>${contact.id}</td>
           <td>${contact.fullName}</td>
           
-          <td>${"-"}</td>
+          <td>${phone}</td>
           <td>${contact.email}</td>
           <td>${contact.birthday}</td>   
           <td>
@@ -104,15 +108,17 @@ btnCreateContact.addEventListener("click", async (e) => {
   if (
     inputName.value == 0 &&
     inputEmail.value == "" &&
-    inputBirthday.value == ""
+    inputBirthday.value == "" &&
+    inputPhone.value == ""
   ) {
     const msg = "*Debes llenar todos los campos";
-    //document.querySelector("#msgAdd").
     document.querySelector("#msgAdd").innerHTML = msg;
   } else if (
     !inputName.value == 0 &&
     !inputEmail.value == 0 &&
-    !inputBirthday.value == 0
+    !inputBirthday.value == 0 &&
+    !inputPhone.value == 0
+
   ) {
     document.querySelector("#msgAdd").innerHTML = "";
     /**
@@ -140,14 +146,14 @@ btnCreateContact.addEventListener("click", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ fullName, email, birthday }),
     })
-      .then((res) => res.json())
-      .catch((error) => {
-        alertManager("error", error);
-      })
-      .then((data) => {
-        const message = "Contacto agregado";
-        alertManager("success", message);
-      });
+    .then((res) => res.json())
+    .catch((error) => {
+      alertManager("error", error);
+    })
+    .then((data) => {
+      const message = "Contacto agregado";
+      alertManager("success", message);
+    });
     createPhone();
     reset();
     orderContacts();
@@ -174,6 +180,7 @@ const orderContacts = async () => {
     })
     .then((json) => {
       const contacts = json["data"];
+      //listPhonesByContact(contacts)
       showContacts(contacts);
     })
     .catch((err) => {
@@ -239,11 +246,13 @@ const getContactById = async (id) => {
             /**
              * variable para capturar el valor de la entrada del correo electronico
              */
-            const phone = inputPhone.value;
+            const number= inputPhone.value;
             /**
              * variable para capturar el valor de la entrada de la fecha de nacimiento
              */
             const birthday = inputBirthday.value;
+
+            updatePhone(number, phone, contact);
             document.querySelector("#msgAdd").value = "";
             await fetch(`http://localhost:9090/api/v1/contacts/${idContact}`, {
               method: "PUT",
@@ -261,7 +270,7 @@ const getContactById = async (id) => {
                 btnEdit.type = "hidden";
                 btnEdit.style.display = "none";
               });
-
+            
             orderContacts();
             reset();
           });
@@ -340,6 +349,47 @@ const createPhone = async () => {
       console.error(err);
     });
 };
+
+const updatePhone = async (number, phoneNumber, contact) =>{
+  console.log(number);
+  await fetch('http://localhost:9090/api/v1/phones')
+  .then((res) => {
+    if (res.status >= 400) {
+      throw new Error("Mala respuesta del servidor");
+    }
+    return res.json();
+  })
+  .catch((error) => {
+    console.log("Ocurrio un problema al listar los telefonos");
+  })
+  .then((json) => {
+    const phones = json["data"];
+    phones.forEach(p => {
+      console.log(p.number);
+      thisPhone = p.number + '-';
+
+      if (phoneNumber == thisPhone){
+        let id = p.id;
+        console.log(id);
+        fetch(`http://localhost:9090/api/v1/phone/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({number, contact}),
+        })
+        .then((res) => res.json())
+        .then((data) => {
+          orderContacts();
+          console.log(data.data);
+          console.log('telefono actualizado');
+        });
+      }
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+}
+
 
 /**
  * funcion para crear alertas
