@@ -350,6 +350,12 @@ const createPhone = async () => {
     });
 };
 
+/**
+ * Actualiza el numero de telefono
+ *
+ * @author Martha Liliana Gallego<lilianagallegom@gmail.com>
+ * @since 1.0.0
+ */
 const updatePhone = async (number, phoneNumber, contact) =>{
   console.log(number);
   await fetch('http://localhost:9090/api/v1/phones')
