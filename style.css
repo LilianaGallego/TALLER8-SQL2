@@ -1,0 +1,49 @@
+body{
+    background-color: rgb(242, 250, 215);
+}
+
+
+span{
+    margin: 15px;
+    font-family: "Lobster", cursive;
+    color: #256d23;
+    text-align: center;
+}
+
+#inputs{
+    margin: 50px;
+   
+}
+
+#editContact{
+    display: none;
+}
+
+#inputTable{
+    margin:  auto;
+}
+table{
+    margin-left:100px
+}
+
+#msgAdd{
+    color: red;
+    text-align: center;
+}
+
+#alert{
+    border: solid 2px blue;
+    border-style: none;
+    background-color: aqua;
+    color: blue;
+    padding: 30px, 10px, 40px, 10px;
+    display:none
+}
+
+#alert-div{
+    width: 40%
+}
+
+#btnEdit{
+    display:none
+}
